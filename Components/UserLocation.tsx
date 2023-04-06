@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from "react";
 import * as Location from "expo-location";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import Chargers from "./Chargers";
-
-export interface LocationData {
-  latitude: number;
-  longitude: number;
-}
+import { LocationData } from "./types/types";
 
 function UserLocation() {
   const [locationData, setLocationData] = useState<LocationData | null>(null);
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        // Handle permissions not granted error
-        return;
-      }
+  const findCoords = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Access Error", "Enable Location Services");
+      return;
+    }
 
-      const location = await Location.getCurrentPositionAsync({});
-      setLocationData({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
-    })();
+    const location = await Location.getCurrentPositionAsync({});
+    setLocationData({
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    });
+  };
+
+  useEffect(() => {
+    findCoords();
   }, []);
+
   return (
     <View>
       {locationData ? (
