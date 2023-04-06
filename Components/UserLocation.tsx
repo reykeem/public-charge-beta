@@ -30,8 +30,6 @@ function UserLocation() {
     <View>
       {locationData ? (
         <>
-          <Text>Latitude: {locationData.latitude}</Text>
-          <Text>Longitude: {locationData.longitude}</Text>
           <Chargers location={locationData} />
         </>
       ) : (
@@ -40,5 +38,14 @@ function UserLocation() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  findChargerButton: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 export default UserLocation;
