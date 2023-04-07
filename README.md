@@ -24,5 +24,6 @@ This App uses
 - As the application frontend grows, it may be necessary to lazyload some of the heavier components such as modals, so that we can defer the loading of unnecessary content
 - Although Native's FlatList component has virtualization features embedded already, extra pagination may help offset the large load of charging stations on subsequent renders
 - Instead of hard-coded user details, maybe a reducer (Redux) or context API (native React Hook) can help store and retrieve user data from storage to formulate the correct headers in the request as the user hits "Start Charging"
-- Map added to UI as visual context so the user can plan their route more accordingly to their convenience and improves overall user experience.
+- Map added to UI as visual context so the user can plan their route more accordingly to their convenience and improves overall user experience
+- Before deployment to production, add environment variables -- API key, sensitive URI -- to .env and .gitignore files
 - Unit, Integration, End-To-End Test Coverage
